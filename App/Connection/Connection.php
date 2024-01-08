@@ -6,7 +6,7 @@ require_once __DIR__.'/../../vendor/autoload.php';
 $dotenv = Dotenv::CreateImmutable(__DIR__.'/../../');
 $dotenv->load();
 
-class Connection {
+class Connect {
     private static $instance;
     private $connection;
     public static $count = 0;
@@ -26,7 +26,7 @@ class Connection {
     }
     public static function getInstance(){
         if(!isset(self::$instance)){
-            self::$instance = new Connection();
+            self::$instance = new Connect();
         }
         return self::$instance;
     }
