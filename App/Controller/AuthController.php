@@ -1,7 +1,8 @@
 <?php
 namespace App\Controller;
-include __DIR__.'../../vendor/autoload.php';
+include __DIR__.'/../../vendor/autoload.php';
 use App\Connection\Connect;
+use App\Model\User; 
 use PDO;
 
 class AuthController
@@ -9,19 +10,14 @@ class AuthController
     public function Register()
     {
         $email = $_POST['email'];
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
+        $username = $_POST['username'];
         $password = $_POST['password'];
-    
         $password = password_hash($password,PASSWORD_DEFAULT);
-        $objuser= new User($id,$username,$email,$password);
+        $objuser= new User($username,$email,$password);
         $objuser->createUser();
-        $_SESSION['id'] = $id;
-        $_SESSION['email'] = $email;
-        $_SESSION['username'] = $username;
-        $_SESSION['password']= $password;
+
       
-        header('location:../login');  
+        // header('location:../login');  
     }
 
 
@@ -31,72 +27,41 @@ class AuthController
         $email = $_POST['email'];
         $password = $_POST['password'];
         if(empty($email) || empty($password)){
-            echo"von avez pas enregistrer le nom et prenom";
+            echo"All the fields are required";
         }else {
-            $obj= new User(null,null,null,$email,$password,null,null);
-            $data=$obj->getUserByUsername();
-           
-
+            $obj= new User($email,$password);
+            $data=$obj->getUserByEmail($email);
         }
         
             if (empty($data)) {
-                echo"email not on data base";
-            }elseif(password_verify($password,$data->password)){
+                echo"User Not Found";
+            }elseif(password_verify($password,$data[0]['password'])){
                 
-                $_SESSION['email'] = $email;
-                $_SESSION['role'] = $data->role_name;
-                $_SESSION['id'] = $data->id;
-                if ($data->role_name=='admin') {
+                $_SESSION['role'] = $data[0]['role'];
+                $_SESSION['id'] = $data[0]['id'];
+                if ($data[0]['role']=='admin') {
                     echo"admin";
-                    
-                    }elseif($data->role_name=='user'){
+                }else{
                     echo"user";
-                        header('location: client/landing');
-                    }elseif($data->role_name=='seller'){
-                    echo"seller";
-                     header('location:../Profile');
-                }   
+                    }  
             }
       }
 
 
-    public static function AllUsers()
-    {
-        $allUsers = new User(null,null, null, null,null , null , null);
-        return   $allUsers->getAllUsers();
-       
-    }
-    public static function updateUser(){
-        
-        $id = $_POST['id'];
-        $firstname = $_POST["firstname"];
-        $lastname = $_POST["lastname"];
-        $email = $_POST["email"];
-        $phone = $_POST['phone'];
-        $profile = $_POST['profile'];
-        $emailHiden = $_POST['emailHiden'];
-        
-        User::updateUser($id, $firstname, $lastname, $email, $password, $phone, $profile,$emailHiden);
-        header('location:../../Profile');
-    }
+   
    
       
        
     
-    public  function showUserByEmail(){
-        $email = $_SESSION['email'];
-        $userModel = new User(null , null , null , $email , null , null, null );
-        $user = $userModel->getUserByEmail($email)[0];
-        include '../../views/client/sellerProfileEdit.php';
-    }
-    public  function deleteUser(){
-        $id = $_GET["id"]; 
-         $user = new User($id, null, null, null, null, null, null);
-         $user->delete();
-         header('location:../users');
+
+
+     public function getPage(){
+        include "Views/auth/signup.php";
      }
-
-
+     public function getloginpage(){
+        include "Views/auth/login.php";
+     }
+    
 
 
 }

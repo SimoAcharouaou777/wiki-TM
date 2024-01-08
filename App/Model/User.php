@@ -1,7 +1,7 @@
 <?php
 namespace App\Model;
 include __DIR__.'/../../vendor/autoload.php';
-use App\Coneection\Connect;
+use App\Connection\Connection;
 use PDO;
 
 class User
@@ -28,21 +28,20 @@ class User
     }
 
 
-    public function __construct($id=null, $username=null, $email=null, $password=null)
+    public function __construct($username=null, $email=null, $password=null)
     {
-        $this->db = Connect::getInstence()->getConnect();
-        $this->id = $id;
+        $this->db = Connection::getConnect();
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
     }
-    public static function getUserById($id)
+    public function getUserByEmail($email)
     {
         $sql = "SELECT users.*, roles.name as role FROM users
         LEFT JOIN roles ON users.role_id = roles.id
-        WHERE users.id = :id";
+        WHERE users.email = :email";
         $statement = $this->db->prepare($sql);
-        $statement->bindParam(':id', $id, PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
         if ($statement) {
             $statement->execute();
             $resultInstances = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -65,13 +64,14 @@ class User
         }
         
     }
-    public static function createUser(){
+    public  function createUser(){
+        
         $sql ="INSERT INTO users (username , email , password) 
         values(:username , :email , :password)";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':username',$username,PDO::PARAM_STR);
-        $stmt->bindParam(':email',$email,PDO::PARAM_STR);
-        $stmt->bindParam(':password',$password,PDO::PARAM_STR);
+        $stmt->bindParam(':username',$this->username,PDO::PARAM_STR);
+        $stmt->bindParam(':email',$this->email,PDO::PARAM_STR);
+        $stmt->bindParam(':password',$this->password,PDO::PARAM_STR);
         $stmt->execute();
     }
 }

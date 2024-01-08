@@ -9,13 +9,9 @@
 </head>
 <body>
 
-<div class="signup-container">
-    <h2>Sign Up</h2>
-    <form class="signup-form" action="/WIKI/register" method="post">
-        <div class="form-group">
-            <label for="username"></label>
-            <input type="text" id="username" name="username" placeholder="enter your Username"  required>
-        </div>
+<div class="login-container">
+    <h2>Login In</h2>
+    <form class="signup-form" action="/WIKI/login" method="post">
         <div class="form-group">
             <label for="email"></label>
             <input type="email" id="email" name="email" placeholder="enter your Email" required>
@@ -25,7 +21,7 @@
             <input type="password" id="password" name="password" placeholder="enter your password" required>
         </div>
         <div class="form-group">
-            <button type="submit">Sign Up</button>
+            <button type="submit">Login In</button>
         </div>
     </form>
 </div>
