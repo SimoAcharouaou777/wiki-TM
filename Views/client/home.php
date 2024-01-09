@@ -17,14 +17,14 @@
         <label for="author">Author:</label>
         <input type="text" name="author" required><br>
 
-        <label for="category">Choose a category:</label>
+        <!-- <label for="category">Choose a category:</label>
         <select id="category" name="category">
             <option value="programming">Programming</option>
             <option value="design">Design</option>
            
         </select>
         <label for="tags">Tags (comma-separated):</label>
-        <input type="text" name="tags"><br>
+        <input type="text" name="tags"><br> -->
 
         <button type="submit">save</button>
     </form>

@@ -47,7 +47,13 @@ class Wikies
         $stmt->bindParam(':content',$this->content,PDO::PARAM_STR);
         $stmt->bindParam(':author',$this->author,PDO::PARAM_STR);
         $stmt->bindParam(':user_id',$userId,PDO::PARAM_INT);
-        $stmt->execute();  
+        $stmt->execute(); 
+        $lastInsertedId = $this->db->lastInsertId();
+        $sqltagwiki = "INSERT INTO tag_wiki (wiki_id)
+        value(:id)";
+        $stmtwiki = $this->db->prepare($sqltagwiki);
+        $stmtwiki->bindParam(':id' , $lastInsertedId , PDO::PARAM_INT);
+        $stmtwiki->execute();
     }
     public static function updateWiki(){
         $sql="UPDATE wikies SET title = :title , content = :content ,
