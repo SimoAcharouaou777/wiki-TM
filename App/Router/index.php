@@ -20,4 +20,7 @@ $router->post($url.'/creatWiki',WikiController::class,'creatWiki');
 $router->get($url.'/Dashboard',DashboardController::class,'showdashboard');
 $router->get($url.'/CreatCategory',CategoryController::class,'showpage');
 $router->post($url.'/CategoryController',CategoryController::class,'createCategory');
+$router->get($url.'/Updatecategory',CategoryController::class,'showupdatepage');
+$router->post($url.'/UpadateCate',CategoryController::class,'updateCategory');
+$router->get($url.'/deletecategory',CategoryController::class,'deleteCategory');
 $router->dispatch();

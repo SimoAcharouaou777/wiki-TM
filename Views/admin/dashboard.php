@@ -40,11 +40,11 @@
     <tbody>
         <?php foreach ($Category as $cat) {?>
         <tr>
-            <td><?= $cat->id ?></td>
-            <td><?= $cat->name ?></td>
+            <td><?= $cat['id'] ?></td>
+            <td><?= $cat['name'] ?></td>
             <td>
-                <button class="update-btn">Update</button>
-                <button class="delete-btn">Delete</button>
+                <a href="Updatecategory?id=<?= $cat['id'] ?>">Update</a>
+                <a href="deletecategory?id=<?= $cat['id']?>">Delete</a>
             </td>
         </tr>
         <?php } ?>
