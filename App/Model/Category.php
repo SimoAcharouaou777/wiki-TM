@@ -1,7 +1,7 @@
 <?php
 namespace App\Model;
 include __DIR__ . '/../../vendor/autoload.php';
-use App\Connection\Connect;
+use App\Connection\Connection;
 use PDO;
 class Category
 {
@@ -14,19 +14,19 @@ class Category
     }
 
     public function __construct($id=null, $name=null){
-        $this->db = Connect::getInstence()->getConnect();
+        $this->db = Connection::getConnect();
         $this->id = $id;
         $this->name = $name;
     }
 
-    public static function creatCategory(){
+    public  function creatCategory(){
         $sql="INSERT INTO categories (name)
         value(:name)";
         $stmt =$this->db->prepare($sql);
         $stmt->bindParam(':name',$name,PDO::PARAM_STR);
         $stmt->execute();  
     }
-    public static function updateCategory(){
+    public  function updateCategory(){
         $sql="UPDATE categories SET name = :name
         WHERE id = :id";
         $stmt = $this->db->prepare($sql);

@@ -19,14 +19,14 @@ class Tags
         $this->id = $id;
         $this->name = $name;
     }
-    public static function createTags(){
+    public  function createTags(){
         $sql="INSERT INTO tags (name)
         value(:name)";
         $stmt =$this->db->prepare($sql);
         $stmt->bindParam(':name',$name,PDO::PARAM_STR);
         $stmt->execute();  
     }
-    public static function updateTags(){
+    public  function updateTags(){
         $sql="UPDATE tags SET name = :name
         WHERE id = :id";
         $stmt = $this->db->prepare($sql);
