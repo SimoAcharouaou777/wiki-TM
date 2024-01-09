@@ -33,12 +33,5 @@ class Connection {
     public static function getConnect(){
         return  new PDO("mysql:host={$_ENV['DB_HOST']};user={$_ENV['DB_USER']};dbname={$_ENV['DB_NAME']}");
     }
-    // public static function getConnect(){
-    //     $servername = $_ENV['DB_HOST'];
-    //     $username = $_ENV['DB_USER'];
-    //     $password = $_ENV['DB_PASSWORD'];
-    //     $dbname = $_ENV['DB_NAME'];
-    //     return new PDO("mysql:host=$servername;dbname=$dbname ;$username , $password");
 
-    // }
 }

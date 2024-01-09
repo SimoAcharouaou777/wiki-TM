@@ -1,7 +1,7 @@
 <?php
 namespace App\Model;
-include __DIR__.'../../vendor/autoload.php';
-use App\Connection\Connect;
+include __DIR__.'/../../vendor/autoload.php';
+use App\Connection\Connection;
 use PDO;
 
 class Wikies
@@ -30,34 +30,33 @@ class Wikies
         return $this->archived;
     }
 
-    public function __construct($id = null, $title = null , $content = null, $author = null ,  $archived = null)
+    public function __construct($id = null, $title = null , $content = null, $author = null ,  $archived = false)
     {
-        $this->db = Connect::getInstence()->getConnect();
+        $this->db = Connection::getConnect();
         $this->id = $id;
         $this->title = $title;
         $this->content = $content;
         $this->author = $author;
         $this->archived = $archived;
     }
-    public static function createWiki(){
-        $sql="INSERT INTO wikies (title , content , author , archived)
-        value(:title , :content , :author , :archived)";
+    public  function createWiki($userId){
+        $sql="INSERT INTO wikies (title , content , author , user_id )
+        value(:title , :content , :author , :user_id)";
         $stmt =$this->db->prepare($sql);
-        $stmt->bindParam(':title',$title,PDO::PARAM_STR);
-        $stmt->bindParam(':content',$content,PDO::PARAM_STR);
-        $stmt->bindParam(':author',$author,PDO::PARAM_STR);
-        $stmt->bindParam(':archived',$archived,PDO::PARAM_STR);
+        $stmt->bindParam(':title',$this->title,PDO::PARAM_STR);
+        $stmt->bindParam(':content',$this->content,PDO::PARAM_STR);
+        $stmt->bindParam(':author',$this->author,PDO::PARAM_STR);
+        $stmt->bindParam(':user_id',$userId,PDO::PARAM_INT);
         $stmt->execute();  
     }
     public static function updateWiki(){
         $sql="UPDATE wikies SET title = :title , content = :content ,
-         author = :author , archived = :archived
+         author = :author 
         WHERE id = :id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':title', $this->title);
         $stmt->bindValue(':content', $this->content);
         $stmt->bindValue(':author', $this->author);
-        $stmt->bindValue(':archived', $this->archived);
         $stmt->bindValue(':id', $this->id);
         $stmt->execute();
     }

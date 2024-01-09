@@ -4,7 +4,7 @@ include __DIR__.'/../../vendor/autoload.php';
 use App\Connection\Connect;
 use App\Model\User; 
 use PDO;
-
+session_start();
 class AuthController
 {
     public function Register()
@@ -13,11 +13,23 @@ class AuthController
         $username = $_POST['username'];
         $password = $_POST['password'];
         $password = password_hash($password,PASSWORD_DEFAULT);
+        $user =  new User();
+        $result =  $user->getAllUsers();
+        foreach($result as $user){
+            if($user['username'] === $username){
+                echo"Pleas Chose Another username";
+                return;
+            }
+            if($user['email'] === $email){
+                echo"  chose another email";
+                return;
+            }
+        }
         $objuser= new User($username,$email,$password);
         $objuser->createUser();
 
       
-        // header('location:../login');  
+        header('location:../WIKI/Login');
     }
 
 
@@ -34,16 +46,22 @@ class AuthController
         }
         
             if (empty($data)) {
-                echo"User Not Found";
+                echo"wrong password or email";
             }elseif(password_verify($password,$data[0]['password'])){
                 
                 $_SESSION['role'] = $data[0]['role'];
                 $_SESSION['id'] = $data[0]['id'];
+                $_SESSION['username'] = $data[0]['username'];
+                // var_dump($_SESSION);
+                // die();
                 if ($data[0]['role']=='admin') {
                     echo"admin";
                 }else{
                     echo"user";
+                    header('location:../WIKI/Home');
                     }  
+            }else{
+                echo"invalid password or email";
             }
       }
 

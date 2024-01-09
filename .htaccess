@@ -1,7 +1,14 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    RewriteRule ^(?:Public/(?:js|css|imgs)/) - [L]
     RewriteBase /WIKI/
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ index.php [QSA,L]
 </IfModule>
+
+
+
+
+
+

@@ -51,7 +51,7 @@ class User
             }
     }
 
-    public static function getAllUsers(){
+    public  function getAllUsers(){
         $sql = "SELECT users.* , roles.name as role FROM users
         LEFT JOIN roles ON users.role_id = roles.id";
         $stmt = $this->db->prepare($sql);
