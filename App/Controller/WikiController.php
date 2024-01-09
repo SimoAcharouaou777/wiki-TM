@@ -7,7 +7,8 @@ use PDO;
 session_start();
 
 class WikiController{
-    public function creatWiki(){
+    public function creatWiki()
+    {
         $title = $_POST['title'];
         $content = $_POST['content'];
         $author = $_POST['author'];
@@ -16,4 +17,21 @@ class WikiController{
         
         $wiki->createWiki($userId);
     }
+    public function showWiki()
+    {
+        $id = $_GET['id'];
+        $wiki = new Wikies();
+        $wikies = $wiki->getWikiById($id);
+        include 'Views/client/UpdateWiki.php';
+    }
+    public function updateWiki(){
+        $id = $_POST['id'];
+        $title = $_POST['title'];
+        $content = $_POST['content'];
+        $author = $_POST['author'];
+        $wiki = new Wikies();
+        $wiki->updateWiki($id , $title , $content , $author);
+        header('location:/WIKI/Dashboard');
+    }
+    
 }

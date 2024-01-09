@@ -7,15 +7,19 @@
 </head>
 <body>
     <h2>Create Wiki Article</h2>
-    <form action="/WIKI/creatWiki" method="post">
+    <form action="/WIKI/updateWiki" method="post">
+
+         
+        <input type="hidden" name="id" value="<?= $wikies->id ?>" required><br>
+
         <label for="title">Title:</label>
-        <input type="text" name="title" required><br>
+        <input type="text" name="title" value="<?= $wikies->title ?>" required><br>
 
         <label for="content">Content:</label>
-        <textarea name="content" rows="4" required></textarea><br>
+        <textarea name="content" rows="4" required><?= $wikies->content ?></textarea><br>
 
         <label for="author">Author:</label>
-        <input type="text" name="author" required><br>
+        <input type="text" name="author" value="<?= $wikies->author ?>" required><br>
 
         <!-- <label for="category">Choose a category:</label>
         <select id="category" name="category">
@@ -27,17 +31,8 @@
         <input type="text" name="tags"><br> -->
 
         <button type="submit">save</button>
+
     </form>
-    <div id="wikis">
-        <?php
-        foreach ($wikies as $wiki) {
-            echo '<div class="wiki-container">';
-            echo '<h3>' . $wiki->title . '</h3>';
-            echo '<p><strong>Author:</strong> ' . $wiki->author . '</p>';
-            echo '<p>' . $wiki->content . '</p>';
-            echo '</div>';
-        }
-        ?>
-    </div>
+
 </body>
 </html>

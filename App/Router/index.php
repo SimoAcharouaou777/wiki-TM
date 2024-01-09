@@ -23,4 +23,6 @@ $router->post($url.'/CategoryController',CategoryController::class,'createCatego
 $router->get($url.'/Updatecategory',CategoryController::class,'showupdatepage');
 $router->post($url.'/UpadateCate',CategoryController::class,'updateCategory');
 $router->get($url.'/deletecategory',CategoryController::class,'deleteCategory');
+$router->get($url.'/UpdateWiki',WikiController::class,'showWiki');
+$router->post($url.'/updateWiki',WikiController::class,'updateWiki');
 $router->dispatch();

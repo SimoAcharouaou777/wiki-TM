@@ -38,13 +38,16 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($Category as $cat) {?>
+        <?php foreach ($wikies as $wiki) {?>
         <tr>
-            <td><?= $cat['id'] ?></td>
-            <td><?= $cat['name'] ?></td>
+            <td><?= $wiki->id ?></td>
+            <td><?= $wiki->title ?></td>
             <td>
-                <a href="Updatecategory?id=<?= $cat['id'] ?>">Update</a>
-                <a href="deletecategory?id=<?= $cat['id']?>">Delete</a>
+                <!-- <a href="Updatecategory?id=<?= $cat['id'] ?>">Update</a>
+                <a href="deletecategory?id=<?= $cat['id']?>">Delete</a> -->
+
+                <a href="UpdateWiki?id=<?= $wiki->id ?>">Update</a>
+                <a href="deleteWiki?id=<?= $wiki->id ?>">Delete</a>
             </td>
         </tr>
         <?php } ?>

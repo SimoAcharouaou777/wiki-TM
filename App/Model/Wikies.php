@@ -55,15 +55,15 @@ class Wikies
         $stmtwiki->bindParam(':id' , $lastInsertedId , PDO::PARAM_INT);
         $stmtwiki->execute();
     }
-    public static function updateWiki(){
+    public  function updateWiki($id, $title , $content , $author){
         $sql="UPDATE wikies SET title = :title , content = :content ,
          author = :author 
         WHERE id = :id";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':title', $this->title);
-        $stmt->bindValue(':content', $this->content);
-        $stmt->bindValue(':author', $this->author);
-        $stmt->bindValue(':id', $this->id);
+        $stmt->bindValue(':title', $title);
+        $stmt->bindValue(':content', $content);
+        $stmt->bindValue(':author', $author);
+        $stmt->bindValue(':id', $id);
         $stmt->execute();
     }
     public function deleteWiki($id){
@@ -74,7 +74,7 @@ class Wikies
     }
     public function getWiki()
     {
-        $stmt = $this->db->prepare("SELECT * from  wikies");
+        $stmt = $this->db->prepare("SELECT * FROM  wikies");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_OBJ);
         return $result;
