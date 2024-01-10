@@ -7,11 +7,24 @@ use PDO;
 
 class ManageWikiesController{
 
-    public function index(){
+    public function index()
+    {
         $wiki = new Wikies();
         $wikies = $wiki->getWiki();
         include 'Views/admin/Wikies.php';
     
     }
+    public function acceptWiki()
+    {
+        $id = $_GET['id'];
+        $wiki = new Wikies();
+        $wiki->acceptWiki($id);
+    }
 
+    public function archiveWiki()
+    {
+        $id = $_GET['id'];
+        $wiki = new Wikies();
+        $wiki->archiveWiki($id);
+    }
 }

@@ -72,8 +72,8 @@
             <td class="py-3 px-4 border-b"><?= $wiki->author?> </td>
             <td class="py-3 px-4 border-b"><?= $wiki->archived?> </td>
             <td class="py-3 px-4 border-b">
-                <button class="text-blue-500 hover:underline mr-2">Accept</button>
-                <button class="text-red-500 hover:underline">Refuse</button>
+                <a class="text-blue-500 hover:underline mr-2" href="AcceptWiki?id=<?= $wiki->id ?>">Accept</a>
+                <a class="text-red-500 hover:underline" href="RefuseWiki?id=<?= $wiki->id ?>">Refuse</a>
             </td>
         </tr>
         <?php } ?>

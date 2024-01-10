@@ -30,4 +30,6 @@ $router->post($url.'/updateWiki',WikiController::class,'updateWiki');
 $router->get($url.'/ManageCategories',ManageCateController::class,'index');
 $router->get($url.'/ManageUsers',DashboardController::class,'showdashboard');
 $router->get($url.'/ManageWikies',ManageWikiesController::class,'index');
+$router->get($url.'/AcceptWiki',ManageWikiesController::class,'acceptWiki');
+$router->get($url.'/RefuseWiki',ManageWikiesController::class,'archiveWiki');
 $router->dispatch();

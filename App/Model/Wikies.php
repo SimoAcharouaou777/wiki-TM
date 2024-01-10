@@ -99,18 +99,22 @@ class Wikies
         $row = $stmt->fetchAll(PDO::FETCH_OBJ);
         return $row;
     }
-    public function updateStatus(){
-        $sql="UPDATE wikies SET archived = :archived";
+    public function acceptWiki($id){
+        $sql="UPDATE wikies SET archived = :archived
+        WHERE id = :id";
         $stmt = $this->db->prepare($sql);
         $archivedValue = 'accepted';
         $stmt->bindParam(':archived',$archivedValue);
+        $stmt->bindParam(':id',$id);
         $stmt->execute();
     }
-    public function archiveStatus(){
-        $sql="UPDATE wikies SET archived = :archived";
+    public function archiveWiki($id){
+        $sql="UPDATE wikies SET archived = :archived
+        WHERE id = :id";
         $stmt = $this->db->prepare($sql);
         $archivedValue = 'refused';
         $stmt->bindParam(':archived',$archivedValue);
+        $stmt->bindParam(':id',$id);
         $stmt->execute();
     }
 }
