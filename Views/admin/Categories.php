@@ -22,7 +22,7 @@
             <span class="mx-4 font-medium">Manage Users</span>
         </a>
 
-        <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="ManageCategories">
+        <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="#">
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -50,31 +50,27 @@
     </nav>  
 </aside>
 <div class="container mx-auto">
-<h1 class="text-2xl font-bold mb-4">User Table</h1>
-<a class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700">
-    Add User
+<h1 class="text-2xl font-bold mb-4">Category Table</h1>
+<a class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700" href="CreatCategory">
+    Add Category
 </a>
 <!-- Table -->
 <table class="min-w-full bg-white border border-gray-300 mt-8 rounded-lg overflow-hidden">
     <thead class="bg-gray-100">
         <tr>
             <th class="py-3 px-4 border-b text-left">ID</th>
-            <th class="py-3 px-4 border-b text-left">Username</th>
-            <th class="py-3 px-4 border-b text-left">Email</th>
-            <th class="py-3 px-4 border-b text-left">Role</th>
+            <th class="py-3 px-4 border-b text-left">Name</th>
             <th class="py-3 px-4 border-b text-left">Actions</th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach($users as $user) { ?>
+        <?php foreach($cate as $category) { ?>
         <tr class="hover:bg-gray-50">
-            <td class="py-3 px-4 border-b"><?= $user['id']?> </td>
-            <td class="py-3 px-4 border-b"><?= $user['username']?> </td>
-            <td class="py-3 px-4 border-b"><?= $user['email']?> </td>
-            <td class="py-3 px-4 border-b"><?= $user['role']?> </td>
+            <td class="py-3 px-4 border-b"><?= $category['id']?> </td>
+            <td class="py-3 px-4 border-b"><?= $category['name']?> </td>
             <td class="py-3 px-4 border-b">
-                <button class="text-blue-500 hover:underline mr-2">Update</button>
-                <button class="text-red-500 hover:underline">Delete</button>
+                <a class="text-blue-500 hover:underline mr-2" href="Updatecategory?id=<?= $category['id'] ?>">Update</a>
+                <a class="text-red-500 hover:underline" href="deletecategory?id=<?= $category['id'] ?>">Delete</a>
             </td>
         </tr>
         <?php } ?>

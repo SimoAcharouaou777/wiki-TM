@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 include __DIR__.'/../../vendor/autoload.php';
-use App\Connection\Connect;
+use App\Connection\Connection;
 use App\Model\Wikies;
 use App\Model\Tags;
 use App\Model\Category;
@@ -16,6 +16,8 @@ class HomeController{
         $tag = $tags->getTags();
         $category = new Category();
         $cate = $category->getCategories();
+        $wikies = new Wikies();
+        $wiki = $wikies->getAcceptedWiki();
         include 'Views/client/home.php';
     
     }

@@ -31,7 +31,7 @@
             <span class="mx-4 font-medium">Manage Categories</span>
         </a>
 
-        <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="ManageWikies">
+        <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="#">
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 5V7M15 11V13M15 17V19M5 5C3.89543 5 3 5.89543 3 7V10C4.10457 10 5 10.8954 5 12C5 13.1046 4.10457 14 3 14V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V14C19.8954 14 19 13.1046 19 12C19 10.8954 19.8954 10 21 10V7C21 5.89543 20.1046 5 19 5H5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
@@ -51,30 +51,29 @@
 </aside>
 <div class="container mx-auto">
 <h1 class="text-2xl font-bold mb-4">User Table</h1>
-<a class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700">
-    Add User
-</a>
 <!-- Table -->
 <table class="min-w-full bg-white border border-gray-300 mt-8 rounded-lg overflow-hidden">
     <thead class="bg-gray-100">
         <tr>
             <th class="py-3 px-4 border-b text-left">ID</th>
-            <th class="py-3 px-4 border-b text-left">Username</th>
-            <th class="py-3 px-4 border-b text-left">Email</th>
-            <th class="py-3 px-4 border-b text-left">Role</th>
+            <th class="py-3 px-4 border-b text-left">Title</th>
+            <th class="py-3 px-4 border-b text-left">Content</th>
+            <th class="py-3 px-4 border-b text-left">Author</th>
+            <th class="py-3 px-4 border-b text-left">Status</th>
             <th class="py-3 px-4 border-b text-left">Actions</th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach($users as $user) { ?>
+        <?php foreach($wikies as $wiki) { ?>
         <tr class="hover:bg-gray-50">
-            <td class="py-3 px-4 border-b"><?= $user['id']?> </td>
-            <td class="py-3 px-4 border-b"><?= $user['username']?> </td>
-            <td class="py-3 px-4 border-b"><?= $user['email']?> </td>
-            <td class="py-3 px-4 border-b"><?= $user['role']?> </td>
+            <td class="py-3 px-4 border-b"><?= $wiki->id?> </td>
+            <td class="py-3 px-4 border-b"><?= $wiki->title?> </td>
+            <td class="py-3 px-4 border-b"><?= $wiki->content?> </td>
+            <td class="py-3 px-4 border-b"><?= $wiki->author?> </td>
+            <td class="py-3 px-4 border-b"><?= $wiki->archived?> </td>
             <td class="py-3 px-4 border-b">
-                <button class="text-blue-500 hover:underline mr-2">Update</button>
-                <button class="text-red-500 hover:underline">Delete</button>
+                <button class="text-blue-500 hover:underline mr-2">Accept</button>
+                <button class="text-red-500 hover:underline">Refuse</button>
             </td>
         </tr>
         <?php } ?>

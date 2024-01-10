@@ -13,15 +13,19 @@ class CategoryController{
     public function createCategory(){
         $catename = $_POST['name'];
         $category = new Category();
-        $result= $category->getCategories();
-        foreach ($result as $cat) {
-            if($result[0]['name'] === $catename){
-                echo"chose another category";
-            }else{
-                $category->creatCategory($catename);
+        try {
+            $category->creatCategory($catename);
+        } catch (\PDOException $e) {
+            if ($e->getCode() == '23000' || $e->errorInfo[1] == 1062) {
+                echo "Chose another Category , this one already exists.";
+            } else {
+                echo "PDO Exception: " . $e->getMessage();
             }
         }
-    }
+      
+       
+        }
+    
     public function showupdatepage(){
         $id = $_GET['id'];
         $category = new Category();

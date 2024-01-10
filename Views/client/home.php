@@ -36,7 +36,7 @@
     </form>
     <div id="wikis">
         <?php
-        foreach ($wikies as $wiki) {
+        foreach ($wiki as $wiki) {
             echo '<div class="wiki-container">';
             echo '<h3>' . $wiki->title . '</h3>';
             echo '<p><strong>Author:</strong> ' . $wiki->author . '</p>';

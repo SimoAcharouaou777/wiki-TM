@@ -86,10 +86,31 @@ class Wikies
     }
     public function getWikiById($id){
 
-        $sql = "SELECT * from wikies where id =?";
+        $sql = "SELECT * FROM wikies WHERE id =?";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$id]);
         $row = $stmt->fetch(PDO::FETCH_OBJ);
         return $row;
+    }
+    public function getAcceptedWiki(){
+        $sql="SELECT * FROM wikies WHERE archived = 'accepted'";
+        $stmt = $this->db->prepare($sql) ;
+        $stmt->execute();
+        $row = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $row;
+    }
+    public function updateStatus(){
+        $sql="UPDATE wikies SET archived = :archived";
+        $stmt = $this->db->prepare($sql);
+        $archivedValue = 'accepted';
+        $stmt->bindParam(':archived',$archivedValue);
+        $stmt->execute();
+    }
+    public function archiveStatus(){
+        $sql="UPDATE wikies SET archived = :archived";
+        $stmt = $this->db->prepare($sql);
+        $archivedValue = 'refused';
+        $stmt->bindParam(':archived',$archivedValue);
+        $stmt->execute();
     }
 }
