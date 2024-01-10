@@ -19,6 +19,7 @@ class ManageWikiesController{
         $id = $_GET['id'];
         $wiki = new Wikies();
         $wiki->acceptWiki($id);
+        header('location:/WIKI/ManageWikies');
     }
 
     public function archiveWiki()
@@ -26,5 +27,6 @@ class ManageWikiesController{
         $id = $_GET['id'];
         $wiki = new Wikies();
         $wiki->archiveWiki($id);
+        header('location:/WIKI/ManageWikies');
     }
 }
