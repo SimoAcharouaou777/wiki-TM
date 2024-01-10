@@ -1,7 +1,7 @@
 <?php
 namespace App\Model;
-include __DIR__.'../../vendor/autoload.php';
-use App\Connection\Connect;
+include __DIR__.'/../../vendor/autoload.php';
+use App\Connection\Connection;
 use PDO;
 
 class Tags
@@ -15,7 +15,7 @@ class Tags
     }
 
     public function __construct($id=null, $name=null){
-        $this->db = Connect::getInstence()->getConnect();
+        $this->db = Connection::getConnect();
         $this->id = $id;
         $this->name = $name;
     }

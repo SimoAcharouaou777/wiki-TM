@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 include __DIR__.'/../../vendor/autoload.php';
-use App\Connection\Connect;
+use App\Connection\Connection;
 use App\Model\User; 
 use PDO;
 session_start();

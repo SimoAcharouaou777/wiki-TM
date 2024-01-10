@@ -17,15 +17,21 @@
         <label for="author">Author:</label>
         <input type="text" name="author" required><br>
 
-        <!-- <label for="category">Choose a category:</label>
-        <select id="category" name="category">
-            <option value="programming">Programming</option>
-            <option value="design">Design</option>
-           
-        </select>
-        <label for="tags">Tags (comma-separated):</label>
-        <input type="text" name="tags"><br> -->
+        <label for="category">Choose a category:</label>
 
+        <select id="category" name="category_id">
+            <?php foreach ($cate as $category) { ?>
+            <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+            <?php } ?>
+        </select>
+        
+        <label for="tag">Choose tag</label>
+        <select name="tags[]" id="tag" multiple>
+            <?php foreach($tag as $tag) {?>
+            <option value="<?= $tag->id ?>"><?= $tag->name ?></option>
+            <?php } ?>
+        </select>
+               
         <button type="submit">save</button>
     </form>
     <div id="wikis">
