@@ -24,12 +24,30 @@ include __DIR__ . '/../partials/navbar.php';
 
     <!-- Search Input -->
     <div class="flex items-center">
-        <input type="text" placeholder="Search..." class="border border-gray-300 rounded-l-md py-2 px-4 focus:outline-none focus:border-gray-500">
+        <input type="text" id="search" onkeyup="search()" placeholder="Search..." class="border border-gray-300 rounded-l-md py-2 px-4 focus:outline-none focus:border-gray-500">
         <button class="bg-blue-500 text-white py-2 px-4 rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
             Search
         </button>
+        <script>
+            function search(){
+                var input=document.getElementById('search').value;
+                var url = '/WIKI/search?id='+input;
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log(xhttp.responseText);
+                        document.getElementById("card").innerHTML = xhttp.responseText;
+                    }
+                };
+                xhttp.open("GET",url, true);
+                xhttp.send();
+            }
+           
+        </script>
     </div>
 </div>
+<div id=card>
+
 
     <?php foreach ($wikies as $wiki) {?>
     <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
@@ -56,5 +74,7 @@ include __DIR__ . '/../partials/navbar.php';
             <span class="text-gray-500"><?=$wiki->category?></span>
         </div>
     </div>
+
         <?php }?>
+</div>
 <?php include __DIR__ . '/../partials/footer.php'?>

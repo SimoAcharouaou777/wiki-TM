@@ -51,4 +51,13 @@ class WikiController{
         $cate = $category->getCategories();
         include 'Views/client/OurWikies.php';
     }
+    public function search()
+    {
+
+        $wiki = new Wikies();
+        $wikies = $wiki->searchWiki($_GET['id']);
+        $category = new Category();
+        $cate = $category->getCategories();
+        include 'Views/client/search.php';
+    }
 }
