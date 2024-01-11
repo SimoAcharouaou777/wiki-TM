@@ -8,6 +8,7 @@ use App\Controller\DashboardController;
 use App\Controller\CategoryController;
 use App\Controller\ManageCateController;
 use App\Controller\ManageWikiesController;
+use App\Controller\CreatWikiController;
 use App\Router;
 
 $router = new Router();
@@ -32,4 +33,6 @@ $router->get($url.'/ManageUsers',DashboardController::class,'showdashboard');
 $router->get($url.'/ManageWikies',ManageWikiesController::class,'index');
 $router->get($url.'/AcceptWiki',ManageWikiesController::class,'acceptWiki');
 $router->get($url.'/RefuseWiki',ManageWikiesController::class,'archiveWiki');
+$router->get($url.'/CreatWiki',CreatWikiController::class,'index');
+$router->get($url.'/WIKIES',WikiController::class,'index');
 $router->dispatch();

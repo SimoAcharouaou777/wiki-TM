@@ -11,7 +11,7 @@ class WikiController{
     {
         $title = $_POST['title'];
         $content = $_POST['content'];
-        $author = $_POST['author'];
+        $author = $_SESSION['username'];
         $userId = $_SESSION['id'];
         $categoryId = $_POST['category_id'];
         $tags = $_POST['tags'];
@@ -41,5 +41,10 @@ class WikiController{
         $wiki->updateWiki($id , $title , $content , $author);
         header('location:/WIKI/Dashboard');
     }
-    
+    public function index()
+    {
+        $wiki = new Wikies();
+        $wikies = $wiki->getWiki();
+        include 'Views/client/OurWikies.php';
+    }
 }

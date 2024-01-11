@@ -117,4 +117,13 @@ class Wikies
         $stmt->bindParam(':id',$id);
         $stmt->execute();
     }
+    public function getLastWiki(){
+        $sql="SELECT *  FROM wikies
+        WHERE archived = 'accepted'
+        ORDER BY id LIMIT 2 ";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $row = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $row;
+    }
 }
