@@ -35,4 +35,5 @@ $router->get($url.'/AcceptWiki',ManageWikiesController::class,'acceptWiki');
 $router->get($url.'/RefuseWiki',ManageWikiesController::class,'archiveWiki');
 $router->get($url.'/CreatWiki',CreatWikiController::class,'index');
 $router->get($url.'/WIKIES',WikiController::class,'index');
+$router->get($url.'/Logout',AuthController::class,'logout');
 $router->dispatch();

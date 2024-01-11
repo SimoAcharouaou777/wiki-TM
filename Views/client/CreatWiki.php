@@ -1,4 +1,11 @@
-<?php include __DIR__.'/../partials/navbar.php' ?>
+<?php 
+session_start() ;
+if(isset($_SESSION['role']) &&  $_SESSION['role'] === 'admin'){
+    header('location:/WIKI/Dashboard');
+}
+include __DIR__.'/../partials/navbar.php' 
+?>
+
 <div class="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
     <h2 class="text-2xl font-semibold mb-4">Add Your Wiki</h2>
     <form action="/WIKI/creatWiki" method="post">

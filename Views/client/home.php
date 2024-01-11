@@ -1,4 +1,12 @@
-<?php include __DIR__.'/../partials/navbar.php' ?>
+<?php 
+
+session_start() ;
+if(isset($_SESSION['role']) &&  $_SESSION['role'] === 'admin'){
+    header('location:/WIKI/Dashboard');
+}
+include __DIR__.'/../partials/navbar.php' ;
+
+?>
 
 <section class=" w-full h-5/6 z-0 ">
 
@@ -37,7 +45,7 @@
      </div>
 <section class=" p-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 justify-around">
 
-<a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+<a href="WIKIES" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
     <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="Public/images/readingbook.jpg" alt="">
     <div class="flex flex-col justify-between p-4 leading-normal">
       <?php foreach($wiki as $wiki){ ?>

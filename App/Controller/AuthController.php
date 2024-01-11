@@ -52,10 +52,9 @@ class AuthController
                 $_SESSION['role'] = $data[0]['role'];
                 $_SESSION['id'] = $data[0]['id'];
                 $_SESSION['username'] = $data[0]['username'];
-                // var_dump($_SESSION);
-                // die();
+
                 if ($data[0]['role']=='admin') {
-                    echo"admin";
+                   header('location:/WIKI/Dashboard');
                 }else{
                     echo"user";
                     header('location:../WIKI/Home');
@@ -63,6 +62,10 @@ class AuthController
             }else{
                 echo"invalid password or email";
             }
+      }
+      public function logout(){
+        session_destroy();
+        header('location:/WIKI/Login');
       }
 
 

@@ -126,4 +126,17 @@ class Wikies
         $row = $stmt->fetchAll(PDO::FETCH_OBJ);
         return $row;
     }
+    public function displayWikies()
+    {
+        $sql="SELECT wikies.*, categories.name AS category, GROUP_CONCAT(tags.name) AS tags
+        FROM wikies
+        INNER JOIN categories ON wikies.category_id = categories.id
+        INNER JOIN tag_wiki ON wikies.id = tag_wiki.wiki_id
+        INNER JOIN tags ON tag_wiki.tag_id = tags.id
+        GROUP BY wikies.id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $row = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $row;
+    }
 }

@@ -3,6 +3,8 @@ namespace App\Controller;
 include __DIR__.'/../../vendor/autoload.php';
 use App\Connection\Connection;
 use App\Model\Wikies; 
+use App\Model\Tags;
+use App\Model\Category;
 use PDO;
 session_start();
 
@@ -44,7 +46,9 @@ class WikiController{
     public function index()
     {
         $wiki = new Wikies();
-        $wikies = $wiki->getWiki();
+        $wikies = $wiki->displayWikies();
+        $category = new Category();
+        $cate = $category->getCategories();
         include 'Views/client/OurWikies.php';
     }
 }
