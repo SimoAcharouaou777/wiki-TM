@@ -91,11 +91,13 @@
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" required>
+                <?php if(isset($_SESSION['erroruser'])) echo $_SESSION['erroruser']; ?>
             </div>
 
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
+                <?php if(isset($_SESSION['erroremail'])) echo $_SESSION['erroremail']; ?>
             </div>
 
             <div class="form-group">

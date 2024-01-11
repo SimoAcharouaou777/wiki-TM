@@ -35,6 +35,7 @@ class Router
             $controller->$action();
         } else {
             throw new \Exception("No route found for URI: $uri");
+            
         }
     }
 }

@@ -92,7 +92,7 @@
     <div class="signup-form">
         <h2>Sign Up</h2>
         <form action="/WIKI/login" method="post">
-
+        <?php if(isset($_SESSION['errorempty'])) echo $_SESSION['errorempty']; ?>
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
@@ -101,6 +101,8 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
+                <?php if(isset($_SESSION['erroremail'])) echo $_SESSION['erroremail']; ?>
+                <?php if(isset($_SESSION['invalidpassword'])) echo $_SESSION['invalidpassword']; ?>
             </div>
 
             <div class="form-group">

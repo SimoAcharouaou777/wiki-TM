@@ -11,17 +11,17 @@ include __DIR__.'/../partials/navbar.php'
     <form action="/WIKI/creatWiki" method="post">
         <div class="mb-4">
             <label for="title" class="block text-sm font-medium text-gray-700">Wiki Title</label>
-            <input type="text" id="title" name="title" class="mt-1 p-2 w-full border rounded-md">
+            <input type="text" id="title" name="title" class="mt-1 p-2 w-full border rounded-md" required>
         </div>
 
         <div class="mb-4">
             <label for="content" class="block text-sm font-medium text-gray-700">Wiki Content</label>
-            <textarea id="content" name="content" rows="4" class="mt-1 p-2 w-full border rounded-md"></textarea>
+            <textarea id="content" name="content" rows="4" class="mt-1 p-2 w-full border rounded-md" required></textarea>
         </div>
 
         <div class="mb-4">
             <label for="tags" class="block text-sm font-medium text-gray-700">Tags</label>
-            <select id="tags" name="tags[]" multiple class="mt-1 p-2 w-full border rounded-md">
+            <select id="tags" name="tags[]" multiple class="mt-1 p-2 w-full border rounded-md" required>
                 <?php foreach($tag as $tag) {?>
                 <option value="tag1"><?= $tag->name?></option>
                 <?php }?>
@@ -30,7 +30,7 @@ include __DIR__.'/../partials/navbar.php'
 
         <div class="mb-4">
             <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
-            <select id="category" name="category_id" class="mt-1 p-2 w-full border rounded-md">
+            <select id="category" name="category_id" class="mt-1 p-2 w-full border rounded-md" required>
                 <?php foreach($cate as $cate) {?>
                 <option value="<?= $cate['id'] ?>"><?= $cate['name']?></option>
                 <?php }?>
