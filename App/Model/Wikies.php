@@ -102,6 +102,7 @@ class Wikies
         $stmt->execute();
         $row = $stmt->fetchAll(PDO::FETCH_OBJ);
         return $row;
+        
     }
     public function acceptWiki($id){
         $sql="UPDATE wikies SET archived = :archived
