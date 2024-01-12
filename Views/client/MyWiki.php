@@ -45,7 +45,9 @@ include __DIR__ . '/../partials/navbar.php';
         <a class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300" href="UpdateMyWiki?id=<?= $wiki->id ?>">
          Update
         </a>
-
+        <a class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300" href="deleteWiki?id=<?= $wiki->id ?>">
+         delete
+        </a>
     </div>
 <?php }?>
       

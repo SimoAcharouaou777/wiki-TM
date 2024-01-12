@@ -17,4 +17,10 @@ class MyWikiController
         $wikies = $wiki->displayUserWiki($id);
         include 'Views/client/MyWiki.php';
     }
+    public function deleteWiki(){
+        $id = $_GET['id'];
+        $wiki = new Wikies();
+        $wiki->deleteWiki($id);
+        header('location:/WIKI/MyWikies');
+    }
 }

@@ -188,4 +188,5 @@ class Wikies
          $row = $stmt->fetchAll(PDO::FETCH_OBJ);
          return $row;
     }
+   
 }

@@ -39,4 +39,5 @@ $router->get($url.'/WIKIES',WikiController::class,'index');
 $router->get($url.'/Logout',AuthController::class,'logout');
 $router->get($url.'/search',WikiController::class,'search');
 $router->get($url.'/MyWikies',MyWikiController::class,'index');
+$router->get($url.'/deleteWiki',MyWikiController::class,'deleteWiki');
 $router->dispatch();
