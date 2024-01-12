@@ -96,6 +96,7 @@
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
+                <p id="errorUsername" class="text-red-500"></p>
             </div>
 
             <div class="form-group">
@@ -103,6 +104,7 @@
                 <input type="password" id="password" name="password" required>
                 <?php if(isset($_SESSION['erroremail'])) echo $_SESSION['erroremail']; ?>
                 <?php if(isset($_SESSION['invalidpassword'])) echo $_SESSION['invalidpassword']; ?>
+                <p id="erroremail" class="text-red-500"></p>
             </div>
 
             <div class="form-group">
@@ -111,7 +113,26 @@
         </form>
     </div>
 </div>
+<script>
+    function validateForm(){
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        if(username.trim() === ''){
+            document.getElementById('errorUsername').innerText='Username cannot be empty';
+            retrun false;
+        }else{
+            document.getElementById('errorUsername').innerText='';
+        }
+        if (email.trim() === "") {
+                document.getElementById('errorEmail').innerText='Email cannot be empty';
+                return false;
+            } else {
+                document.getElementById('errorEmail').innerText='';
+            }
 
+            return true;
+    }
+</script>
 </body>
 </html>
 

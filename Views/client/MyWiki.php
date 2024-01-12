@@ -43,11 +43,13 @@ include __DIR__ . '/../partials/navbar.php';
             <span class="text-gray-500"><?=$wiki->archived?></span>
         </div>
         <a class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300" href="UpdateMyWiki?id=<?= $wiki->id ?>">
-         Update
+          Update
         </a>
-        <a class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300" href="deleteWiki?id=<?= $wiki->id ?>">
-         delete
-        </a>
+
+        <a class="px-4 py-2 ml-4 bg-red-500 text-white rounded-md hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300" href="deleteWiki?id=<?= $wiki->id ?>">
+         Delete
+       </a>
+
     </div>
 <?php }?>
       

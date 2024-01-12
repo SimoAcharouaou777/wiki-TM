@@ -26,12 +26,12 @@ class Tags
         $stmt->bindParam(':name',$name,PDO::PARAM_STR);
         $stmt->execute();  
     }
-    public  function updateTags(){
+    public  function updateTags($id,$name){
         $sql="UPDATE tags SET name = :name
         WHERE id = :id";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':name', $this->name);
-        $stmt->bindValue(':id', $this->id);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':id', $id);
         $stmt->execute();
     }
     public function deleteTags($id){

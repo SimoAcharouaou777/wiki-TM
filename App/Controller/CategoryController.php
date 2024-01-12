@@ -22,8 +22,7 @@ class CategoryController{
                 echo "PDO Exception: " . $e->getMessage();
             }
         }
-      
-       
+        header('location:/WIKI/Dashboard');
         }
     
     public function showupdatepage(){

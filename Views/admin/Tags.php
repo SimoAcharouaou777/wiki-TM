@@ -56,30 +56,24 @@ if(isset($_SESSION['role']) &&  $_SESSION['role'] === 'user'){
     </nav>  
 </aside>
 <div class="container mx-auto">
-<h1 class="text-2xl font-bold mb-4">User Table</h1>
+<h1 class="text-2xl font-bold mb-4">Tags Managment</h1>
 <!-- Table -->
 <table class="min-w-full bg-white border border-gray-300 mt-8 rounded-lg overflow-hidden">
     <thead class="bg-gray-100">
         <tr>
             <th class="py-3 px-4 border-b text-left">ID</th>
-            <th class="py-3 px-4 border-b text-left">Title</th>
-            <th class="py-3 px-4 border-b text-left">Content</th>
-            <th class="py-3 px-4 border-b text-left">Author</th>
-            <th class="py-3 px-4 border-b text-left">Status</th>
-            <th class="py-3 px-4 border-b text-left">Actions</th>
+            <th class="py-3 px-4 border-b text-left">Name</th>
+            <th class="py-3 px-4 border-b text-left">Action</th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach($wikies as $wiki) { ?>
+        <?php foreach($tags as $tag) { ?>
         <tr class="hover:bg-gray-50">
-            <td class="py-3 px-4 border-b"><?= $wiki->id?> </td>
-            <td class="py-3 px-4 border-b"><?= $wiki->title?> </td>
-            <td class="py-3 px-4 border-b"><?= $wiki->content?> </td>
-            <td class="py-3 px-4 border-b"><?= $wiki->author?> </td>
-            <td class="py-3 px-4 border-b"><?= $wiki->archived?> </td>
+            <td class="py-3 px-4 border-b"><?= $tag->id?> </td>
+            <td class="py-3 px-4 border-b"><?= $tag->name?> </td>
             <td class="py-3 px-4 border-b">
-                <a class="text-blue-500 hover:underline mr-2" href="AcceptWiki?id=<?= $wiki->id ?>">Accept</a>
-                <a class="text-red-500 hover:underline" href="RefuseWiki?id=<?= $wiki->id ?>">Refuse</a>
+                <a class="text-blue-500 hover:underline mr-2" href="UpdateTag?id=<?= $tag->id ?>">Update</a>
+                <a class="text-red-500 hover:underline" href="DeleteTag?id=<?= $tag->id ?>">Delete</a>
             </td>
         </tr>
         <?php } ?>
