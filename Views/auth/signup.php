@@ -87,22 +87,25 @@
 <div class="container">
     <div class="signup-form">
         <h2>Sign Up</h2>
-        <form action="/WIKI/register" method="post">
+        <form action="/WIKI/register" method="post" onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" required>
                 <?php if(isset($_SESSION['erroruser'])) echo $_SESSION['erroruser']; ?>
+                <p id="usernameError" style="color: red;"></p>
             </div>
 
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
                 <?php if(isset($_SESSION['erroremail'])) echo $_SESSION['erroremail']; ?>
+                <p id="emailError" style="color: red;"></p>
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
+                <p id="passwordError" style="color: red;"></p>
             </div>
 
             <div class="form-group">
@@ -113,7 +116,34 @@
         </form>
     </div>
 </div>
+        <script>
+             function validateForm() {
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
+            const regexuser = /^[a-zA-Z0-9]+$/;
+            if (!regexuser.test(username)) {
+            document.getElementById('usernameError').innerText='invalid username';
+            return false;
+             }
+             const emailregex = /^[a-zA-Z0-9._%+-]+@(gmail\.com|hotmail\.com)$/i;
+             if(!emailregex.test(email)){
+                document.getElementById('emailError').innerText = 'invalid email';
+                return false;
+             }
+             if (password.length < 6) {
+            document.getElementById('passwordError').innerText = 'Password must be at least 6 characters long';
+            return false;
+            } 
+
+             document.getElementById('usernameError').innerText = '';
+             document.getElementById('emailError').innerText = '';
+             document.getElementById('passwordError').innerText = '';
+
+        return true;
+             }
+        </script>
 </body>
 </html>
 
