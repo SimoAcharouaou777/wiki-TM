@@ -31,22 +31,27 @@ class WikiController{
     {
         $id = $_GET['id'];
         $wiki = new Wikies();
-        $wikies = $wiki->getWikiById($id);
+        $wikies = $wiki->displayForUpdate($id);
+        $category = new Category();
+        $cate = $category->getCategories();
+        $tags = new Tags();
+        $tag = $tags->getTags();
         include 'Views/client/UpdateWiki.php';
     }
     public function updateWiki(){
         $id = $_POST['id'];
         $title = $_POST['title'];
         $content = $_POST['content'];
-        $author = $_POST['author'];
+        $tag = $_POST['tags'];
+        $category = $_POST['category_id'];
         $wiki = new Wikies();
-        $wiki->updateWiki($id , $title , $content , $author);
-        header('location:/WIKI/Dashboard');
+        $wiki->updateWiki($id , $title , $content );
+        header('location:/WIKI/MyWikies');
     }
     public function index()
     {
         $wiki = new Wikies();
-        $wikies = $wiki->displayWikies();
+        $wikies = $wiki->getAcceptedWiki();
         $category = new Category();
         $cate = $category->getCategories();
         include 'Views/client/OurWikies.php';

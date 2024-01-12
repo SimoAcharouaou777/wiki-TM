@@ -1,38 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Wiki Article</title>
-</head>
-<body>
-    <h2>Create Wiki Article</h2>
+<?php 
+
+if(isset($_SESSION['role']) &&  $_SESSION['role'] === 'admin'){
+    header('location:/WIKI/Dashboard');
+}
+include __DIR__.'/../partials/navbar.php' 
+?>
+<?php foreach( $wikies as $wiki ) {?>
+<div class="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
+    <h2 class="text-2xl font-semibold mb-4">Add Your Wiki</h2>
     <form action="/WIKI/updateWiki" method="post">
+        <div class="mb-4">
+            <input type="hidden" name="id" value="<?= $wiki->id ?>">
+            <label for="title" class="block text-sm font-medium text-gray-700">Wiki Title</label>
+            <input type="text" id="title" name="title" class="mt-1 p-2 w-full border rounded-md" value="<?= $wiki->title ?>" required>
+        </div>
 
-         
-        <input type="hidden" name="id" value="<?= $wikies->id ?>" required><br>
+        <div class="mb-4">
+            <label for="content" class="block text-sm font-medium text-gray-700">Wiki Content</label>
+            <textarea id="content" name="content" rows="4" class="mt-1 p-2 w-full border rounded-md"   required><?= $wiki->content ?></textarea>
+        </div>
 
-        <label for="title">Title:</label>
-        <input type="text" name="title" value="<?= $wikies->title ?>" required><br>
+        <div class="mb-4">
+            <label for="tags" class="block text-sm font-medium text-gray-700">Tags</label>
+            <select id="tags" name="tags[]" multiple class="mt-1 p-2 w-full border rounded-md" required>
+                <?php foreach($tag as $tag) {?>
+                <option value="tag1"><?= $tag->name?></option>
+                <?php } ?>
+            </select>
+        </div>
 
-        <label for="content">Content:</label>
-        <textarea name="content" rows="4" required><?= $wikies->content ?></textarea><br>
+        <div class="mb-4">
+            <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+            <select id="category" name="category_id" class="mt-1 p-2 w-full border rounded-md" required>
+                <?php foreach($cate as $category) { ?>
+                <option value=""><?= $category['name']?></option>
+                <?php } ?>
+            </select>
+        </div>
 
-        <label for="author">Author:</label>
-        <input type="text" name="author" value="<?= $wikies->author ?>" required><br>
-
-        <!-- <label for="category">Choose a category:</label>
-        <select id="category" name="category">
-            <option value="programming">Programming</option>
-            <option value="design">Design</option>
-           
-        </select>
-        <label for="tags">Tags (comma-separated):</label>
-        <input type="text" name="tags"><br> -->
-
-        <button type="submit">save</button>
-
+        <div class="flex justify-center">
+            <button type="submit" class="px-4 py-2 bg-blue-700 text-white rounded-md hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">Update Wiki</button>
+        </div>
     </form>
+</div>
+<?php }?>
 
-</body>
-</html>
+<?php include __DIR__.'/../partials/footer.php' ?>

@@ -44,17 +44,15 @@ include __DIR__.'/../partials/navbar.php' ;
         <h2 class="text-3xl font-bold mb-4 text-blue-500">OUR LAST ARTICLE</h2>
      </div>
 <section class=" p-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 justify-around">
-
+<?php foreach($wiki as $wiki){ ?>
 <a href="WIKIES" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
     <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="Public/images/readingbook.jpg" alt="">
     <div class="flex flex-col justify-between p-4 leading-normal">
-      <?php foreach($wiki as $wiki){ ?>
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><?= $wiki->title ?></h5>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><?= $wiki->content ?></p>
-        <?php }?>
     </div>
 </a>
-
+<?php }?>
 </section>
 
 <div class=" p-20 flex justify-center items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">

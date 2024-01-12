@@ -9,6 +9,7 @@ use App\Controller\CategoryController;
 use App\Controller\ManageCateController;
 use App\Controller\ManageWikiesController;
 use App\Controller\CreatWikiController;
+use App\Controller\MyWikiController;
 use App\Router;
 
 $router = new Router();
@@ -26,7 +27,7 @@ $router->post($url.'/CategoryController',CategoryController::class,'createCatego
 $router->get($url.'/Updatecategory',CategoryController::class,'showupdatepage');
 $router->post($url.'/UpadateCate',CategoryController::class,'updateCategory');
 $router->get($url.'/deletecategory',CategoryController::class,'deleteCategory');
-$router->get($url.'/UpdateWiki',WikiController::class,'showWiki');
+$router->get($url.'/UpdateMyWiki',WikiController::class,'showWiki');
 $router->post($url.'/updateWiki',WikiController::class,'updateWiki');
 $router->get($url.'/ManageCategories',ManageCateController::class,'index');
 $router->get($url.'/ManageUsers',DashboardController::class,'showdashboard');
@@ -37,4 +38,5 @@ $router->get($url.'/CreatWiki',CreatWikiController::class,'index');
 $router->get($url.'/WIKIES',WikiController::class,'index');
 $router->get($url.'/Logout',AuthController::class,'logout');
 $router->get($url.'/search',WikiController::class,'search');
+$router->get($url.'/MyWikies',MyWikiController::class,'index');
 $router->dispatch();

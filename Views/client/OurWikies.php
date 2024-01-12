@@ -10,7 +10,7 @@ include __DIR__ . '/../partials/navbar.php';
 <div class="flex items-center justify-around mb-4 mt-20">
     <!-- Category Filter -->
     <div class="relative">
-        <select class="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+        <select id="CategoryId"  class="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
             <?php  foreach ($cate as $category) {?>
             <option value="category1"><?= $category['name'] ?></option>
             <?php } ?>
@@ -31,7 +31,7 @@ include __DIR__ . '/../partials/navbar.php';
         <script>
             function search(){
                 var input=document.getElementById('search').value;
-                var url = '/WIKI/search?id='+input;
+                var url = '/WIKI/search?id='+input ;
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
@@ -42,11 +42,11 @@ include __DIR__ . '/../partials/navbar.php';
                 xhttp.open("GET",url, true);
                 xhttp.send();
             }
-           
+            
         </script>
     </div>
 </div>
-<div id=card>
+<div id="card">
 
 
     <?php foreach ($wikies as $wiki) {?>

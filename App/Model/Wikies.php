@@ -60,15 +60,13 @@ class Wikies
         }
        
     }
-    public  function updateWiki($id, $title , $content , $author){
-        $sql="UPDATE wikies SET title = :title , content = :content ,
-         author = :author 
+    public  function updateWiki($id, $title , $content ){
+        $sql="UPDATE wikies SET title = :title , content = :content  
         WHERE id = :id";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':title', $title);
-        $stmt->bindValue(':content', $content);
-        $stmt->bindValue(':author', $author);
-        $stmt->bindValue(':id', $id);
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':content', $content);
+        $stmt->bindParam(':id', $id);
         $stmt->execute();
     }
     public function deleteWiki($id){
@@ -93,7 +91,13 @@ class Wikies
         return $row;
     }
     public function getAcceptedWiki(){
-        $sql="SELECT * FROM wikies WHERE archived = 'accepted'";
+        $sql="SELECT wikies.*, categories.name AS category, GROUP_CONCAT(tags.name) AS tags
+        FROM wikies
+        INNER JOIN categories ON wikies.category_id = categories.id
+        INNER JOIN tag_wiki ON wikies.id = tag_wiki.wiki_id
+        INNER JOIN tags ON tag_wiki.tag_id = tags.id
+        WHERE archived = 'accepted'
+        GROUP BY wikies.id";
         $stmt = $this->db->prepare($sql) ;
         $stmt->execute();
         $row = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -146,11 +150,42 @@ class Wikies
         INNER JOIN categories ON wikies.category_id = categories.id
         INNER JOIN tag_wiki ON wikies.id = tag_wiki.wiki_id
         INNER JOIN tags ON tag_wiki.tag_id = tags.id
-        WHERE title like ?
+        WHERE title like ? 
         GROUP BY wikies.id";
         $stmt = $this->db->prepare($sql);
         $stmt->execute(["%$value%"]);
         $row = $stmt->fetchAll(PDO::FETCH_OBJ);
         return $row;
+    }
+    public function displayUserWiki($id)
+    {
+        $sql="SELECT wikies.*, categories.name AS category, GROUP_CONCAT(tags.name) AS tags
+        FROM wikies
+          JOIN categories ON wikies.category_id = categories.id
+          JOIN tag_wiki ON wikies.id = tag_wiki.wiki_id
+          JOIN tags ON tag_wiki.tag_id = tags.id
+          JOIN users ON wikies.user_id = users.id
+        WHERE users.id = :id
+        GROUP BY wikies.id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id',$id,PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $row;
+    }
+    public function displayForUpdate($id)
+    {
+        $sql="SELECT wikies.*, categories.name AS category, GROUP_CONCAT(tags.name) AS tags
+        FROM wikies
+          JOIN categories ON wikies.category_id = categories.id
+          JOIN tag_wiki ON wikies.id = tag_wiki.wiki_id
+          JOIN tags ON tag_wiki.tag_id = tags.id
+        WHERE wikies.id = :id
+        GROUP BY wikies.id";
+         $stmt = $this->db->prepare($sql);
+         $stmt->bindParam(':id',$id,PDO::PARAM_INT);
+         $stmt->execute();
+         $row = $stmt->fetchAll(PDO::FETCH_OBJ);
+         return $row;
     }
 }
